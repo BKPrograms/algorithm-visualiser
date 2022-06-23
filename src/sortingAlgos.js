@@ -207,7 +207,6 @@ function maxHeapify(arr, n, i, animations) {
     }
 
 
-
 }
 
 function minHeapify(arr, n, i, animations) {
@@ -243,7 +242,6 @@ function minHeapify(arr, n, i, animations) {
     }
 
 
-
 }
 
 export function getHeapSortAnims(array) {
@@ -254,11 +252,11 @@ export function getHeapSortAnims(array) {
 
     let n = c.length;
 
-    for (let i = Math.floor(n / 2) - 1; i >= 0; i--){
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
         maxHeapify(c, n, i, anims);
     }
 
-    for (let j = n - 1; j > 0; j--){
+    for (let j = n - 1; j > 0; j--) {
 
         swap(c, 0, j); // Move largest to end of list
 
@@ -281,11 +279,11 @@ export function getMinHeapSortAnims(array) {
 
     let n = c.length;
 
-    for (let i = Math.floor(n / 2) - 1; i >= 0; i--){
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
         minHeapify(c, n, i, anims);
     }
 
-    for (let j = n - 1; j > 0; j--){
+    for (let j = n - 1; j > 0; j--) {
 
         swap(c, 0, j); // Move largest to end of list
 
@@ -301,3 +299,63 @@ export function getMinHeapSortAnims(array) {
 }
 
 
+// Insertion sort
+
+export function getInsertSortAnims(array) {
+
+    const anims = [];
+
+    const c = array.slice();
+
+    for (let i = 1; i < c.length; i++) {
+
+        let compareMe = c[i];
+        let j = i - 1;
+
+        while (j >= 0 && c[j] > compareMe) {
+
+            anims.push([j, i, 0]);
+
+            c[j + 1] = c[j];
+            j = j - 1;
+            anims.push([j + 1, c[j], 1]);
+
+            if (j >= 0) {
+                anims.push([j, i, 0]);
+            }
+
+        }
+
+
+        c[j + 1] = compareMe;
+
+        anims.push([j + 1, compareMe, 1]);
+    }
+    return anims;
+}
+
+// Selection Sort:
+
+export function getSelectAnims(array) {
+
+    const anims = [];
+
+    for (let i = 0; i < array.length - 1; i++) {
+
+        let min_idx = i;
+
+        for (let j = i + 1; j < array.length; j++) {
+            if (array[j] < array[min_idx]) {
+                min_idx = j;
+            }
+        }
+
+        swap(array, min_idx, i);
+
+        anims.push([min_idx, array[i], 1]);
+        anims.push([i, array[min_idx], 1]);
+    }
+
+    return anims;
+
+}

@@ -6,10 +6,10 @@ import {
     getQuickSortAnims,
     getHeapSortAnims,
     getMinHeapSortAnims,
-    getInsertSortAnims
+    getInsertSortAnims, getSelectAnims
 } from "../sortingAlgos";
 
-const SPEED = 1/100;
+const SPEED = 1 / 2;
 
 export default class SortingVisualiser extends React.Component {
 
@@ -213,7 +213,7 @@ export default class SortingVisualiser extends React.Component {
 
             const cChange = anim5[i][2];
 
-            if (cChange === 0){
+            if (cChange === 0) {
 
                 const [baronei, bartwoi, j] = anim5[i];
                 const barOneStyle = arrbar[baronei].style;
@@ -234,9 +234,41 @@ export default class SortingVisualiser extends React.Component {
             }
 
 
-
         }
 
+    }
+
+    selectionSort() {
+        const anim6 = getSelectAnims(this.state.array);
+
+        const arrbar = document.getElementsByClassName('array-bar');
+
+        for (let i = 0; i < anim6.length; i++) {
+
+            const cChange = anim6[i][2];
+
+            if (cChange === 0) {
+
+                const [baronei, bartwoi, j] = anim6[i];
+                const barOneStyle = arrbar[baronei].style;
+                const barTwoStyle = arrbar[bartwoi].style;
+                const color = i % 4 === 0 ? 'red' : 'green';
+
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * SPEED);
+
+            } else {
+                setTimeout(() => {
+                    const [barOneIdx, newHeight, j] = anim6[i];
+                    const barOneStyle = arrbar[barOneIdx].style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * SPEED);
+            }
+
+
+        }
     }
 
     render() {
@@ -249,7 +281,7 @@ export default class SortingVisualiser extends React.Component {
                     (<div className="array-bar" key={i} style={{height: `${value}px`}}></div>)
                 )}
                 <div>
-                    <button onClick={() => this.resetArray()}>Generate new array</button>
+
                     <button onClick={() => this.mergeSort()}>Mergesort</button>
                     <button onClick={() => this.quickSort()}>Quicksort</button>
                     <button onClick={() => this.maxheapSort()}>MaxHeapsort</button>
@@ -264,8 +296,9 @@ export default class SortingVisualiser extends React.Component {
                                    (event) => this.setState({value: event.target.value}
                                    )
                                } step="1"/>
+                        <span id="output">{this.state.value}</span>
                     </div>
-                    <span id="output">{this.state.value}</span>
+                    <button onClick={() => this.resetArray()}>Generate new array</button>
                 </div>
 
 
