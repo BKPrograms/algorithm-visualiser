@@ -1,13 +1,22 @@
 import React from "react";
 import "./SortingVisualiser.css";
-import {getMergeAnims, getBubbleAnims} from "../sortingAlgos";
+import {
+    getMergeAnims,
+    getBubbleAnims,
+    getQuickSortAnims,
+    getHeapSortAnims,
+    getMinHeapSortAnims,
+    getInsertSortAnims
+} from "../sortingAlgos";
+
+const SPEED = 1/100;
 
 export default class SortingVisualiser extends React.Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {array: [], value: 200};
+        this.state = {array: [], value: 400};
     }
 
     componentDidMount() {
@@ -45,13 +54,13 @@ export default class SortingVisualiser extends React.Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * 1);
+                }, i * SPEED);
             } else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * 1);
+                }, i * SPEED);
             }
 
 
@@ -77,7 +86,7 @@ export default class SortingVisualiser extends React.Component {
                 setTimeout(() => {
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * 1);
+                }, i * SPEED);
 
 
             } else {
@@ -85,7 +94,7 @@ export default class SortingVisualiser extends React.Component {
                     const [barOneIdx, newHeight] = animations2[i];
                     const barOneStyle = arrbar[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`;
-                }, i * 1);
+                }, i * SPEED);
             }
         }
 
@@ -94,12 +103,141 @@ export default class SortingVisualiser extends React.Component {
 
     quickSort() {
 
+        const anim3 = getQuickSortAnims(this.state.array);
+
+        const arrbar = document.getElementsByClassName('array-bar');
+
+        for (let i = 0; i < anim3.length; i++) {
+
+            const cChange = anim3[i][2];
+
+            if (cChange === 0) {
+
+                const [baronei, bartwoi, j] = anim3[i];
+                const barOneStyle = arrbar[baronei].style;
+                const barTwoStyle = arrbar[bartwoi].style;
+                const color = i % 4 === 0 ? 'red' : 'green';
+
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * SPEED);
+
+            } else {
+                setTimeout(() => {
+                    const [barOneIdx, newHeight, j] = anim3[i];
+                    const barOneStyle = arrbar[barOneIdx].style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * SPEED);
+            }
+        }
+
+
     }
 
-    heapSort() {
+    maxheapSort() {
+
+        const anim4 = getHeapSortAnims(this.state.array);
+
+        const arrbar = document.getElementsByClassName('array-bar');
+
+        for (let i = 0; i < anim4.length; i++) {
+
+            const cChange = anim4[i][2];
+
+            if (cChange === 0) {
+
+                const [baronei, bartwoi, j] = anim4[i];
+                const barOneStyle = arrbar[baronei].style;
+                const barTwoStyle = arrbar[bartwoi].style;
+                const color = i % 4 === 0 ? 'red' : 'green';
+
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * SPEED);
+
+            } else {
+                setTimeout(() => {
+                    const [barOneIdx, newHeight, j] = anim4[i];
+                    const barOneStyle = arrbar[barOneIdx].style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * SPEED);
+            }
+        }
+
 
     }
 
+    minheapSort() {
+
+        const anim4 = getMinHeapSortAnims(this.state.array);
+
+        const arrbar = document.getElementsByClassName('array-bar');
+
+        for (let i = 0; i < anim4.length; i++) {
+
+            const cChange = anim4[i][2];
+
+            if (cChange === 0) {
+
+                const [baronei, bartwoi, j] = anim4[i];
+                const barOneStyle = arrbar[baronei].style;
+                const barTwoStyle = arrbar[bartwoi].style;
+                const color = i % 4 === 0 ? 'red' : 'green';
+
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * SPEED);
+
+            } else {
+                setTimeout(() => {
+                    const [barOneIdx, newHeight, j] = anim4[i];
+                    const barOneStyle = arrbar[barOneIdx].style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * SPEED);
+            }
+        }
+
+
+    }
+
+    insertionSort() {
+
+        const anim5 = getInsertSortAnims(this.state.array);
+
+        const arrbar = document.getElementsByClassName('array-bar');
+
+        for (let i = 0; i < anim5.length; i++) {
+
+            const cChange = anim5[i][2];
+
+            if (cChange === 0){
+
+                const [baronei, bartwoi, j] = anim5[i];
+                const barOneStyle = arrbar[baronei].style;
+                const barTwoStyle = arrbar[bartwoi].style;
+                const color = i % 4 === 0 ? 'red' : 'green';
+
+                setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * SPEED);
+
+            } else {
+                setTimeout(() => {
+                    const [barOneIdx, newHeight, j] = anim5[i];
+                    const barOneStyle = arrbar[barOneIdx].style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * SPEED);
+            }
+
+
+
+        }
+
+    }
 
     render() {
         const arr2 = this.state.array;
@@ -114,12 +252,17 @@ export default class SortingVisualiser extends React.Component {
                     <button onClick={() => this.resetArray()}>Generate new array</button>
                     <button onClick={() => this.mergeSort()}>Mergesort</button>
                     <button onClick={() => this.quickSort()}>Quicksort</button>
-                    <button onClick={() => this.heapSort()}>Heapsort</button>
+                    <button onClick={() => this.maxheapSort()}>MaxHeapsort</button>
+                    <button onClick={() => this.minheapSort()}>MinHeapsort</button>
                     <button onClick={() => this.bubbleSort()}>Bubblesort</button>
+                    <button onClick={() => this.insertionSort()}>Insertion Sort</button>
+                    <button onClick={() => this.selectionSort()}>Selection Sort</button>
                     <div>
-                        <input type="range" min="1" max="300" value={this.state.value} className="slider" id="myRange"
+                        <input type="range" min="10" max="400" value={this.state.value} className="slider" id="myRange"
                                onChange={
-                                   (event) => this.setState({value: event.target.value})
+
+                                   (event) => this.setState({value: event.target.value}
+                                   )
                                } step="1"/>
                     </div>
                     <span id="output">{this.state.value}</span>
@@ -128,20 +271,5 @@ export default class SortingVisualiser extends React.Component {
 
             </div>
         )
-    }
-
-    arrAreEq(arr1, arr2) {
-        if (arr1.length !== arr2.length) {
-            console.log("size diff");
-            return false;
-        }
-
-        for (let i = 0; i < arr2.length; i++) {
-            if (arr1[i] !== arr2[i]) {
-                console.log(i);
-                return false;
-            }
-        }
-        return true;
     }
 }
