@@ -9,7 +9,7 @@ import {
     getInsertSortAnims, getSelectAnims
 } from "../sortingAlgos";
 
-const SPEED = 1 / 2;
+const SPEED = 0.75;
 
 export default class SortingVisualiser extends React.Component {
 
@@ -290,7 +290,7 @@ export default class SortingVisualiser extends React.Component {
                     <button onClick={() => this.insertionSort()}>Insertion Sort</button>
                     <button onClick={() => this.selectionSort()}>Selection Sort</button>
                     <div>
-                        <input type="range" min="10" max="400" value={this.state.value} className="slider" id="myRange"
+                        <input type="range" min="100" max="400" value={this.state.value} className="slider" id="myRange"
                                onChange={
 
                                    (event) => this.setState({value: event.target.value}
