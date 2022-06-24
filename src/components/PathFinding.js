@@ -107,10 +107,11 @@ export default class PathFindingVisualiser extends React.Component {
         const mClicked = this.state.mouseIsPressed;
 
         return (<div className="grid">
-
+                <div>Click on empty nodes to place walls</div>
                 {
                     nodes2.map((row, rowIndex) => {
                         return (<div>
+
                                 {row.map((node, nodeIndex) =>
                                     <Node
                                         key={nodeIndex}
