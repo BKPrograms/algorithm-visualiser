@@ -9,6 +9,7 @@ import {
 import Navbar from "./components/navbar.component";
 import React from ".";
 import "bootstrap/dist/css/bootstrap.min.css";
+import GraphsVisualiser from "./components/GraphsVisualiser";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
 
                 <Route path="/" exact element={<SortingVisualiser/>}/>
                 <Route path="/path" exact element={<PathFindingVisualiser/>}/>
+                <Route path="/graphs" exact element={<GraphsVisualiser/>}/>
 
 
             </Routes>

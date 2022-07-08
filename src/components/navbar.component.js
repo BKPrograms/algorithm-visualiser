@@ -19,6 +19,10 @@ export default class Navbar extends Component {
                             <Link to="/path" className = "nav-link">Pathfinding</Link>
                         </li>
 
+                        <li className="navbar-item">
+                            <Link to="/graphs" className = "nav-link">Graphs</Link>
+                        </li>
+
                     </ul>
                 </div>
 

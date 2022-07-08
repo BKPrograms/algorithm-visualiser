@@ -47,11 +47,7 @@
 }
 
 .node-wall {
-    background-color: rgb(12, 53, 71);
-}
-
-.node-shortest-path {
-    animation-name: shortestPath;
+    animation-name: turnWall;
     animation-duration: 1.5s;
     animation-timing-function: ease-out;
     animation-delay: 0s;
@@ -60,6 +56,35 @@
     animation-fill-mode: forwards;
     animation-play-state: running;
 }
+
+.node-shortest-path {
+    animation-name: shortestPath;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-out;
+    animation-delay: 0s;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes turnWall {
+    0% {
+        transform: scale(0.6);
+        background-color: rgb(12, 53, 71);
+    }
+
+    50% {
+        transform: scale(1.2);
+        background-color: rgb(12, 53, 71);
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: rgb(12, 53, 71);
+    }
+}
+
 
 @keyframes shortestPath {
     0% {
