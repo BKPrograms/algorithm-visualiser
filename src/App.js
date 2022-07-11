@@ -13,7 +13,7 @@ import GraphsVisualiser from "./components/GraphsVisualiser";
 
 function App() {
     return (
-        <BrowserRouter basename={'bkprograms.github.io/'}>
+        <BrowserRouter>
             <Navbar/>
             <br/>
             <Routes>
